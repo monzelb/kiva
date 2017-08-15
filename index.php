@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Projects</title>
+  <title>Soon-to-expire Loans</title>
   <!-- meta -->
   <meta charset="utf-8" />
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <!-- mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="vendor/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -56,9 +55,9 @@ $now =  (new DateTime());
 ?>
 
  <div class="container">
-   <h2>Striped Rows</h2>
-   <p>The .table-striped class adds zebra-stripes to a table:</p>            
-   <table class="table table-striped">
+   <h2>Loans expiring soon</h2>
+   <p>A table of all loans with a status of fundRaising and an expiration date within the next 24 hours.</p>            
+   <table class="table table-striped ">
      <thead>
        <tr>
          <th>Id</th>
@@ -89,26 +88,16 @@ $now =  (new DateTime());
           echo '<th>' . $loan['fundedAmount'] . '</th>';
           echo '<th>' . $amountLeft . '</th>';
           echo '</tr>';
-          echo $totalAmountLeft;
-          echo $totalLoanAmount;
-
         }
       };
-      echo '<tr>';
+      echo '<tr class="success">';
       echo '<th>' . '- </th>';
       echo '<th>' . '- </th>';
-      echo '<th>' . '- </th>';
+      echo '<th>' . 'Totals: </th>';
       echo '<th>' . $totalLoanAmount . '</th>';
       echo '<th>' . $totalAmountLeft . '</th>';
       echo '</tr>';
        ?>
-       <tr>
-         <th> - </th>
-         <th> - </th>
-         <th> - </th>
-         <th> Total amount </th>
-         <th>Amount left</th>
-       </tr>
      </tbody>
    </table>
  </div>
