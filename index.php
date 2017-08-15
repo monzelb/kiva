@@ -8,7 +8,7 @@ $service_url = 'http://api.kivaws.org/graphql';
 
 $curl = curl_init($service_url);
 
-$curl_post_data = array("query" => '{loans (filters: {expiringSoon:true, status:fundRaising}, sortBy: newest, limit: 20) {totalCount values { name  status plannedExpirationDate }}}');
+$curl_post_data = array("query" => '{loans (filters: {expiringSoon:true, status:fundRaising}, sortBy: expiringSoon, limit: 300) {totalCount values { name id loanAmount plannedExpirationDate }}}');
 $data_string =  json_encode($curl_post_data);
 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
@@ -27,28 +27,25 @@ if ($curl_response === false) {
     die('error occured during curl exec. Additioanl info: ' . var_export($info));
 }
 curl_close($curl);
-// echo $json_a['data'][loans];
-
-// if (!isset($json_a['data']['loans']['values'][0]['loanAmount'])) $json_a['data']['loans']['values'][0]['loanAmount'] = '';
-
-  $amount= $json_a['data']['loans']['values'][0]['loanAmount'];
-  echo floatval($amount);
 
 $loans= $json_a['data']['loans']['values'];
+echo count($json_a['data']['loans']['values']) . '<br>';
 for($i=0; $i < count($loans); $i++){
   $loan= $json_a['data']['loans']['values'][$i];
-  echo $loan['name'];
-  // echo $loan['loanAmount'];
-  // echo $loan['loanAmount'];
-  // $date = new DateTime($loan['plannedExpirationDate']);
-  // $now =  (new DateTime());
-  // $datetime1 = date_create($date->format('Y-m-d'));
-  // $datetime2 = date_create($now->format('Y-m-d'));
-  // $interval = date_diff($datetime2, $datetime1);
-  // echo $interval->format('%R%a').'<br>';
-  // if (echo intval($interval->format('%R%a')) < 5){
-  //   echo $loan['name'];
-  // }
+  // echo $loan['name'];
+  
+  $date = new DateTime($loan['plannedExpirationDate']);
+  $now =  (new DateTime());
+  $datetime1 = date_create($date->format('Y-m-d'));
+  $datetime2 = date_create($now->format('Y-m-d'));
+  $interval = date_diff($datetime2, $datetime1);
+  $link = "https://www.kiva.org/lend/" . $loan['id'];
+  if ($interval->format('%R%a') < 1){
+    echo "name: " . $loan['name'] . '<br>';
+    echo "loan amount: " . $loan['loanAmount'] . '<br>';
+    echo "expires: " . $loan['plannedExpirationDate'] . '<br>';
+    echo "link: " . $link . '<br>' . '<br>';
+  }
 
 };
 
