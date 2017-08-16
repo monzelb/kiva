@@ -41,7 +41,6 @@
 
   ?>
   <body>
-
     <div class="container">
       <h2>Kiva loans expiring soon</h2>
       <p>A table of all loans with a status of fundRaising and an expiration date within the next 24 hours.</p>            
@@ -66,13 +65,14 @@
         $totalLoanAmount = 0;
         $values = $json_a['data']['loans']['values'];
         $now =  (new DateTime());
+        echo $now->format('Y-m-d H:i:s');
 
-      //loop over response
+      //loop over response, and set variables.
         for($i=0; $i < count($loans); $i++){
           $loan= $values[$i];  
           $date = new DateTime($loan['plannedExpirationDate']);
-          $datetime1 = date_create($date->format('Y-m-d'));
-          $datetime2 = date_create($now->format('Y-m-d'));
+          $datetime1 = date_create($date->format('Y-m-d H:i:s'));
+          $datetime2 = date_create($now->format('Y-m-d H:i:s'));
           $interval = date_diff($datetime2, $datetime1);
           $link = "https://www.kiva.org/lend/" . $loan['id'];
           $amountLeft = $loan['loanAmount'] - $loan['fundedAmount'];
