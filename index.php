@@ -65,7 +65,6 @@
         $totalLoanAmount = 0;
         $values = $json_a['data']['loans']['values'];
         $now =  (new DateTime());
-        echo $now->format('Y-m-d H:i:s');
 
       //loop over response, and set variables.
         for($i=0; $i < count($loans); $i++){
