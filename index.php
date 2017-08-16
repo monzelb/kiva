@@ -95,9 +95,9 @@
         echo '<tr class="success">';
         echo '<th>' . '- </th>';
         echo '<th>' . '- </th>';
-        echo '<th>' . '- </th>';
         echo '<th>' . 'Totals: </th>';
         echo '<th>' . $totalLoanAmount . '</th>';
+        echo '<th>' . '- </th>';
         echo '<th>' . $totalAmountLeft . '</th>';
         echo '</tr>';
 
