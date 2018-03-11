@@ -12,5 +12,9 @@ thead, tbody tr {
 thead{
     margin-top: 30px;
 }
+.header{
+    background-color:#afdd92;
+    padding-left:30px;
+}
 
 /*reference: https://www.codeply.com/go/OAEz9LcQ0T*/

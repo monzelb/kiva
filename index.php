@@ -41,9 +41,28 @@
 
   ?>
   <body>
-    <div class="container">
+
+  sdafsdfasfsdf
+  <h1>Realtime communication with WebRTC</h1>
+
+  <video id="localVideo" autoplay></video>
+  <video id="remoteVideo" autoplay></video>
+
+  <div>
+    <button id="startButton">Start</button>
+    <button id="callButton">Call</button>
+    <button id="hangupButton">Hang Up</button>
+  </div>
+
+  <script src="js/lib/adapter.js"></script>
+  <script src="js/main.js"></script>
+
+  
+  <div class = "header">
       <h2>Kiva loans expiring soon</h2>
       <p>A table of all loans with a status of fundRaising and an expiration date within the next 24 hours.</p>            
+    </div>
+    <div class="container">
       <table class="table table-striped ">
         <thead>
           <tr>
